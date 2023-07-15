@@ -10,14 +10,14 @@
 //  Project link: https://github.com/AndriyPetrovic/SwiftPractice
 //-------------------------------------------------------------------------------------------
 
-import Foundation
-
 /*
     First task
     The length of the edge of the cube is given. 
     Find the face area, total surface area, 
     and volume of this cube
 */
+
+import Foundation
 
 func firstTask()
 {
