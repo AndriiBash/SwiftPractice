@@ -12,16 +12,16 @@
 
 import Foundation
 
-// First task 
+/*
+    First task
+    The length of the edge of the cube is given. 
+    Find the face area, total surface area, 
+    and volume of this cube
+*/
+
 func firstTask()
 {
-    /*
-        The length of the edge of the cube is given. 
-        Find the face area, total surface area, 
-        and volume of this cube
-    */
-
-    var lengthEdge: Double = 0
+    var lengthEdge: Double = 0.0
 
     print("Enter the length of the edge of the cube : ", terminator: "")
 
@@ -49,13 +49,52 @@ func firstTask()
     }
     else
     {
-        print("error!")
+        print("\u{001B}[0;31merror! \u{001B}[0m")
+    }
+}
+
+
+/*
+    Second task
+    Write a program that calculates the value of a function.
+    Variable values are entered by the user.
+*/
+
+func secondTask()
+{
+    var a: Double = 0.0
+    var b: Double = 0.0
+    var c: Double = 0.0
+
+    print("\nEnter the a,b,c : ")
+
+    if let inputA = readLine(), let inputB = readLine(), let inputC = readLine()
+    {
+        if let numberA = Double(inputA), let numberB = Double(inputB), let numberC = Double(inputC)
+        {
+            a = Double(numberA)
+            b = Double(numberB)
+            c = Double(numberC)
+
+            var result: Double = round(tan(c) + sqrt(b/c + a) * 1000) / 1000.0
+
+            print("Answer function(tan(c) - sqrt(b/c + a)) : \(result)")
+        }
+        else
+        {
+            print("\u{001B}[0;31merror: \u{001B}[0m Write only numbers.")
+        }
+    }
+    else
+    {
+        print("\u{001B}[0;31merror! \u{001B}[0m")
     }
 }
 
 func main()
 {
     firstTask()
+    secondTask()
 }
 
 main()
