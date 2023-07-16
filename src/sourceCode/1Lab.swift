@@ -4,7 +4,7 @@
 //  Copyright © 2023. All Rights Reserved.
 //
 //  OS:           macOS 13.4 (Ventura)
-//  FILE:         firstLab.swift
+//  FILE:         1Lab.swift
 //  AUTHOR:       Andrii Izbash
 //
 //  Project link: https://github.com/AndriyPetrovic/SwiftPractice
