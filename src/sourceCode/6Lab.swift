@@ -37,8 +37,8 @@ func generateArray() -> [Int]
 
 func getIndexAndValue(inputArray: [Int]) -> ([Int], [Int])
 {
-    let valueArray = inputArray.filter { $0 % 3 == 0}
-    let indexValue = inputArray.enumerated().filter { $0.element % 3 == 0 }.map {$0.offset}
+    let valueArray = inputArray.filter { $0 % 3 == 0 }
+    let indexValue = inputArray.enumerated().filter { $0.element % 3 == 0 }.map { $0.offset }
 
     return (valueArray, indexValue)
 }
