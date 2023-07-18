@@ -19,11 +19,10 @@
     matrix. Write the result in array B.
 
     Second task
-    ~~~~~~~~~~~~~~~~
-    ~~~~~~~~~~~~~~~~
-    ~~~~~~~~~~~~~~~~
-    ~~~~~~~~~~~~~~~~
-    ~~~~~~~~~~~~~~~~
+    Find the difference between the Minimum positive
+    elements of the main diagonal and the Arithmetic
+    Average of the odd elements of the row of the X(6,6)
+    matrix.
 */
 
 import Foundation
@@ -82,30 +81,67 @@ func searchLastElement(inputMatrix: [[Int]]) -> [Int]
     return elementArr
 }
 
+func getMinElementDiogMatrix(inputMatrix: [[Int]]) -> Int
+{
+    var element: Int = 999
+    //  △
+    //  |
+    //  |
+    //  |______  in var element also we can
+    //           use Int.max, but this will have a bad
+    //           effect on performance, or use the search
+    //           for the maximum element of the matrix
+
+    for i in 0..<min(inputMatrix.count, inputMatrix[0].count)
+    {
+        if inputMatrix[i][i] > 0 && inputMatrix[i][i] < element
+        {
+            element = inputMatrix[i][i]
+        }
+    }
+
+    return element == 999 ? 0 : element
+}
+
+func getAvgNum(inputArr: [Int]) -> Double?
+{
+    guard !inputArr.isEmpty else
+    {
+        return nil
+    }
+    
+    let sum = inputArr.reduce(0, +)
+    let average = Double(sum) / Double(inputArr.count)
+    
+    return average
+}
+
 func firstTask()
 {
     let mainMatrix = generateMatrix()
 
-    print("Matrix:\n")
+    print("\u{001B}[0;36m[First task]\u{001B}[0m\nMatrix:")
     printMatrix(inputMatrix: mainMatrix)
     print("The last column values are multiples of 4 : \(searchLastElement(inputMatrix: mainMatrix))")
+
 }
 
 func secondTask()
 {
+    let mainMatrix = generateMatrix()
 
+    print("\u{001B}[0;36m\n[Second task]\u{001B}[0m\nMatrix:")
+    printMatrix(inputMatrix: mainMatrix)
+
+    print("Minimum positive element of the main diagonal : \(getMinElementDiogMatrix(inputMatrix: mainMatrix))")
+    print("Avg : \(getAvgNum(inputArr: mainMatrix.last!)!)")
+    print("Their difference : \(Double(getMinElementDiogMatrix(inputMatrix: mainMatrix)) - getAvgNum(inputArr: mainMatrix.last!)!)")
 }
 
 func main()
 {
     firstTask()
-    //let xArray = generateArray()
-    //let indexValueArray = getIndexAndValue(inputArray: xArray)
-
-    //print("We have such an array : \(xArray)")
-    //print("List of multiples of \(constValue.sizeArray) :\t\(indexValueArray.0)", terminator: "\t")
-    //print("\nIndices multiple of \(constValue.sizeArray) numbers : \(indexValueArray.1)", terminator: "\t")
-    //print("\n")
+    secondTask()
 }
 
 main()
