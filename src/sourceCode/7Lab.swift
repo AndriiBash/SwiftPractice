@@ -83,24 +83,9 @@ func searchLastElement(inputMatrix: [[Int]]) -> [Int]
 
 func getMinElementDiogMatrix(inputMatrix: [[Int]]) -> Int
 {
-    var element: Int = 999
-    //  △
-    //  |
-    //  |
-    //  |______  in var element also we can
-    //           use Int.max, but this will have a bad
-    //           effect on performance, or use the search
-    //           for the maximum element of the matrix
+    let minValue = inputMatrix.indices.compactMap{ $0 < inputMatrix[$0].count && inputMatrix[$0][$0] > 0 ? inputMatrix[$0][$0] : nil }.min()!
 
-    for i in 0..<min(inputMatrix.count, inputMatrix[0].count)
-    {
-        if inputMatrix[i][i] > 0 && inputMatrix[i][i] < element
-        {
-            element = inputMatrix[i][i]
-        }
-    }
-
-    return element == 999 ? 0 : element
+    return minValue
 }
 
 func getAvgNum(inputArr: [Int]) -> Double?
