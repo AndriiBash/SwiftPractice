@@ -79,7 +79,6 @@ func thirdTask()
     let mainStr: String = getStr()
 
     print("The sequence of five letters a in a string : \(hasFiveConsecutiveA(inputStr: mainStr))")
-    //print("\u{001B}[0;36m[Third task]\u{001B}[0\n We have string : \(mainStr)")
 }
 
 func main()
