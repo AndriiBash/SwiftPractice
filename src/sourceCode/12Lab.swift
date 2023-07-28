@@ -44,12 +44,6 @@ struct student
     }
 }
 
-func getStr(_ getMessage: String = "") -> String
-{
-    print("\(getMessage) : ", terminator: "")
-    return readLine()!
-}
-
 func main()
 {
     var testStudent = student(name: "John", group: "IPZ-ZV")
