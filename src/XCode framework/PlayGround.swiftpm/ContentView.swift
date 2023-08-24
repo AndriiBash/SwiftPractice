@@ -2,19 +2,24 @@ import SwiftUI
 
 struct ContentView: View
 {
+    @State private var isAuth = true
+    
     @State private var login = ""
     @State private var password = ""
+    @State private var confirmPassword = ""
     
     var body: some View
     {
         VStack(spacing: 5)                             // vertical stack
         {
-            Text("Авторизація")
+            Text(isAuth ? "Авторизація" : "Реєстрація") // ternar operation
+                //.padding(isAuth ? 16 : 24)
                 .padding(.vertical, 18)                 // in bg text
-                .padding(.horizontal, 40)
+                .padding([.horizontal], isAuth ? 40 : 46)
                 .font(Font.system(size: 18).bold())     // maybe use .bold after (size: 24)
                 .background(Color("customColor"))
                 .cornerRadius(14)
+                //.cornerRadius(isAuth ? 30 : 50)
             
             VStack
             {
@@ -32,13 +37,31 @@ struct ContentView: View
                     .padding(8)
                     .padding(.horizontal, 12)
                 
+                if !isAuth
+                {
+                    SecureField("Повторіть пароль", text: $confirmPassword)
+                        .padding()
+                        .background(Color("customColor"))
+                        .cornerRadius(12)
+                        .padding(8)
+                        .padding(.horizontal, 12)
+                }
+                
+                
                 Button
                 {
-                    print("Авторизуватись")
+                    if isAuth
+                    {
+                        print("Авторизуватись")
+                    }
+                    else
+                    {
+                        print("Реєстрація")
+                    }
                 }
                 label:
                 {
-                    Text("Увійти")
+                    Text(isAuth ? "Увійти" : "Зарєструватись")
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(LinearGradient(colors: [Color("gradientColor1"), Color("gradientColor2")],startPoint: .leading,  endPoint: .trailing ))
@@ -51,11 +74,11 @@ struct ContentView: View
                 
                 Button
                 {
-                    print("Реєстрація!!!!!!")
+                    isAuth.toggle() // переключатель состояния для булевой isAuth
                 }
                 label:
                 {
-                    Text("Зареєструватись")
+                    Text(isAuth ? "Зареєструватись" : "Вже є акаунт")
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity)
                         .cornerRadius(12)
@@ -69,10 +92,14 @@ struct ContentView: View
             .padding(.top, 15)
             .background(Color("customColor"))
             .cornerRadius(24)
-            .padding(30)
+            .padding(isAuth ? 30 : 12)
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Image("backgroundLogin").resizable().ignoresSafeArea())
+            .background(Image("backgroundLogin")
+                .resizable()
+                .ignoresSafeArea()
+                .blur(radius: isAuth ? 0 : 6)) // blur эффект при регистрации
+            .animation(Animation.easeInOut(duration: 0.25), value: isAuth) // анимация для всего, типа исиИнАут время 0.2 по значению исАутх
     }
 }
     

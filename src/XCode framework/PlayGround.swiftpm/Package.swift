@@ -19,8 +19,8 @@ let package = Package(
             bundleIdentifier: "andrii.PlayGround",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .asset("AppIcon"),
-            accentColor: .presetColor(.pink),
+            appIcon: .placeholder(icon: .cloud),
+            accentColor: .presetColor(.blue),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
