@@ -7,7 +7,7 @@ struct MyApp: App
     {
         WindowGroup
         {
-            ContentView()
+            AuthView()
         }
     }
 }

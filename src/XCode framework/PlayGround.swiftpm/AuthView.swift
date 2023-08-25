@@ -1,8 +1,9 @@
 import SwiftUI
 
-struct ContentView: View
+struct AuthView: View
 {
     @State private var isAuth = true
+    @State private var isTabViewShow = false
     
     @State private var login = ""
     @State private var password = ""
@@ -10,13 +11,13 @@ struct ContentView: View
     
     var body: some View
     {
-        VStack(spacing: 5)                             // vertical stack
+        VStack(spacing: 1)                                  // vertical stack spacer
         {
-            Text(isAuth ? "Авторизація" : "Реєстрація") // ternar operation
+            Text(isAuth ? "Авторизація" : "Реєстрація")     // ternar operation
                 //.padding(isAuth ? 16 : 24)
-                .padding(.vertical, 18)                 // in bg text
+                .padding(.vertical, 18)                     // in bg text
                 .padding([.horizontal], isAuth ? 40 : 46)
-                .font(Font.system(size: 18).bold())     // maybe use .bold after (size: 24)
+                .font(Font.system(size: 18).bold())         // maybe use .bold after (size: 24)
                 .background(Color("customColor"))
                 .cornerRadius(14)
                 //.cornerRadius(isAuth ? 30 : 50)
@@ -25,7 +26,7 @@ struct ContentView: View
             {
                 TextField("Введіть логін", text: $login)
                     .padding()
-                     .background(Color("customColor"))
+                    .background(Color("customColor"))
                     .cornerRadius(12)
                     .padding(8)
                     .padding(.horizontal, 12)
@@ -47,16 +48,20 @@ struct ContentView: View
                         .padding(.horizontal, 12)
                 }
                 
-                
                 Button
                 {
-                    if isAuth
+                    if isAuth                   // тут проверка авторизации
                     {
                         print("Авторизуватись")
+                        isTabViewShow.toggle()
                     }
                     else
                     {
                         print("Реєстрація")
+                        self.login = ""
+                        self.password = ""
+                        self.confirmPassword = ""
+                        self.isAuth.toggle()    // после регистрации переходит в состояние авторизации
                     }
                 }
                 label:
@@ -100,6 +105,9 @@ struct ContentView: View
                 .ignoresSafeArea()
                 .blur(radius: isAuth ? 0 : 6)) // blur эффект при регистрации
             .animation(Animation.easeInOut(duration: 0.25), value: isAuth) // анимация для всего, типа исиИнАут время 0.2 по значению исАутх
+            .fullScreenCover(isPresented: $isTabViewShow){ // if isTabViewShow true
+                MainTabBar()
+            }
     }
 }
     
@@ -107,6 +115,6 @@ struct ContentView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        ContentView()
+        AuthView()
     }
 }
