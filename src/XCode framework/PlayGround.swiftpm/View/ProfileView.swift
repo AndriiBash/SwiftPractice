@@ -11,7 +11,12 @@ struct ProfileView: View
 {
     var body: some View
     {
-        Text("Тут мій профіль!")
+        VStack
+        {
+            Text("Тут мій профіль!")
+        }
+        //.frame(maxWidth: .infinity, maxHeight: .infinity)
+        //.background(Color.red)
     }
 }
 

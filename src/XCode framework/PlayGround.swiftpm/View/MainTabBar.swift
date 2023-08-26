@@ -13,7 +13,11 @@ struct MainTabBar: View
     {
         TabView
         {
-            LessonView()
+            
+            NavigationView
+            {
+                LessonView()
+            }
                 .tabItem
                 {
                     VStack{
@@ -41,9 +45,8 @@ struct MainTabBar: View
                         Text("Мій профіль")
                     }
                 }
-            
-            
         }
+        
     }
 }
 
